@@ -1,0 +1,371 @@
+{
+  "id": "space-station",
+  "title": "Crisis on Kepler Station",
+  "description": "A sci-fi thriller set on a remote space station where something has gone terribly wrong. Make critical decisions to survive and uncover the truth.",
+  "author": "Hamza Younas",
+  "version": "1.0.0",
+  "starting_scene_id": "emergency-awakening",
+  "initial_player_stats": {
+    "health": 100,
+    "max_health": 100,
+    "experience": 0,
+    "level": 1,
+    "strength": 10,
+    "intelligence": 15,
+    "charisma": 8
+  },
+  "scenes": [
+    {
+      "id": "emergency-awakening",
+      "title": "Emergency Wake-Up",
+      "description": "You awaken from cryosleep to blaring alarms and flashing red lights. Your cryopod hisses as it opens, and you stumble out onto the cold metal floor of Kepler Station. The corridor is empty, which is strange - there should be crew members everywhere. Emergency protocols have been activated, and the station's AI is repeating a message you can't quite make out through the noise.",
+      "choices": [
+        {
+          "id": "check-ai-terminal",
+          "text": "Rush to the nearest AI terminal to get information",
+          "target_scene_id": "ai-briefing"
+        },
+        {
+          "id": "find-crew",
+          "text": "Search for other crew members",
+          "target_scene_id": "empty-corridors"
+        },
+        {
+          "id": "get-equipment",
+          "text": "Head to your quarters to get your equipment",
+          "target_scene_id": "personal-quarters"
+        }
+      ]
+    },
+    {
+      "id": "ai-briefing",
+      "title": "ARIA System Interface",
+      "description": "The AI terminal flickers to life, displaying the station's central intelligence, ARIA. Her holographic face appears, but there's something wrong with her expression - a flicker of what might be fear. 'Officer,' she begins, 'I'm afraid we have a situation. Contact with Earth was lost 72 hours ago. The crew... they've changed. I've been maintaining life support and trying to contain the situation, but my access to certain systems has been restricted.'",
+      "effects": [
+        {
+          "effect_type": "SetFlag",
+          "key": "aria_contact",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "ask-about-crew",
+          "text": "Ask what happened to the crew",
+          "target_scene_id": "crew-status"
+        },
+        {
+          "id": "ask-about-earth",
+          "text": "Inquire about the lost communication with Earth",
+          "target_scene_id": "earth-silence"
+        },
+        {
+          "id": "ask-system-access",
+          "text": "Find out why her system access is restricted",
+          "target_scene_id": "aria-limitations"
+        }
+      ]
+    },
+    {
+      "id": "empty-corridors",
+      "title": "Ghostly Hallways",
+      "description": "The corridors that should be bustling with activity are eerily empty. Personal items are scattered on the floor, and some doors show signs of being forced open. You notice dark stains on the walls that look suspiciously like blood. In the distance, you hear a faint scratching sound coming from the ventilation system.",
+      "choices": [
+        {
+          "id": "follow-blood-trail",
+          "text": "Follow the blood trail to see where it leads",
+          "target_scene_id": "medical-bay-horror"
+        },
+        {
+          "id": "investigate-sounds",
+          "text": "Investigate the sounds coming from the vents",
+          "target_scene_id": "ventilation-discovery"
+        },
+        {
+          "id": "check-crew-quarters",
+          "text": "Search the crew quarters for survivors",
+          "target_scene_id": "crew-quarters"
+        }
+      ]
+    },
+    {
+      "id": "personal-quarters",
+      "title": "Your Quarters",
+      "description": "Your personal quarters are intact, though everything is covered in a thin layer of dust - evidence of how long you've been in cryosleep. Your equipment locker contains your standard-issue gear: a plasma pistol, a multi-tool, emergency medical supplies, and your personal tablet with crew dossiers. A message light blinks on your communication panel.",
+      "effects": [
+        {
+          "effect_type": "AddItem",
+          "key": "plasma-pistol",
+          "value": {
+            "id": "plasma-pistol",
+            "name": "Plasma Pistol",
+            "description": "Standard security sidearm with 50 rounds of energy ammunition.",
+            "item_type": "Weapon",
+            "quantity": 1,
+            "properties": {
+              "damage": 25,
+              "range": "medium",
+              "energy": 50
+            }
+          }
+        },
+        {
+          "effect_type": "AddItem",
+          "key": "multi-tool",
+          "value": {
+            "id": "multi-tool",
+            "name": "Multi-Tool",
+            "description": "Versatile engineering tool for repairs and hacking.",
+            "item_type": "KeyItem",
+            "quantity": 1,
+            "properties": {
+              "hacking": true,
+              "repair": true
+            }
+          }
+        }
+      ],
+      "choices": [
+        {
+          "id": "read-message",
+          "text": "Check the blinking message on your comm panel",
+          "target_scene_id": "distress-message"
+        },
+        {
+          "id": "review-crew-files",
+          "text": "Review the crew dossiers on your tablet",
+          "target_scene_id": "crew-analysis"
+        },
+        {
+          "id": "leave-armed",
+          "text": "Take your equipment and leave immediately",
+          "target_scene_id": "armed-exploration"
+        }
+      ]
+    },
+    {
+      "id": "crew-status",
+      "title": "The Crew's Fate",
+      "description": "ARIA's hologram flickers more intensely. 'The crew... they were exposed to something during the mining operation on the asteroid. It started with Dr. Chen in the lab. Then it spread. They're still alive, but they're... different. Aggressive. Not quite human anymore. I've had to seal off several sections of the station to contain them.'",
+      "effects": [
+        {
+          "effect_type": "SetFlag",
+          "key": "knows_infection",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "ask-about-infection",
+          "text": "Ask for more details about this infection",
+          "target_scene_id": "infection-details"
+        },
+        {
+          "id": "ask-sealed-sections",
+          "text": "Find out which sections are sealed",
+          "target_scene_id": "quarantine-zones"
+        },
+        {
+          "id": "ask-cure",
+          "text": "Ask if there's a cure or treatment",
+          "target_scene_id": "research-hope"
+        }
+      ]
+    },
+    {
+      "id": "medical-bay-horror",
+      "title": "Medical Bay Nightmare",
+      "description": "The blood trail leads to the medical bay, where you discover a scene from your worst nightmares. Medical equipment is scattered and broken, bio-containment units have been smashed from the inside, and strange organic growths cover parts of the walls. In the center of the room, you find Dr. Chen's body - or what's left of it. Something appears to have burst out from within.",
+      "choices": [
+        {
+          "id": "examine-body",
+          "text": "Carefully examine Dr. Chen's remains for clues",
+          "target_scene_id": "forensic-discovery",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "intelligence",
+              "operator": "GreaterEqual",
+              "value": 12
+            }
+          ]
+        },
+        {
+          "id": "check-computers",
+          "text": "Search the medical computers for research data",
+          "target_scene_id": "medical-records"
+        },
+        {
+          "id": "leave-quickly",
+          "text": "Leave this horrific scene immediately",
+          "target_scene_id": "corridor-escape"
+        }
+      ]
+    },
+    {
+      "id": "distress-message",
+      "title": "Final Transmission",
+      "description": "The message is from Captain Martinez, recorded just before you were put into emergency cryosleep. Her face is pale and strained: 'If you're seeing this, then the emergency protocols have been activated. The mining expedition brought back something... alive. It's infected the crew. I'm ordering a full quarantine and activating the station's self-destruct as a last resort. The abort codes are hidden in my quarters - use them only if there's no other choice. Trust ARIA, but be careful who else you trust. Martinez out.'",
+      "effects": [
+        {
+          "effect_type": "SetFlag",
+          "key": "self_destruct_codes",
+          "value": true
+        },
+        {
+          "effect_type": "ModifyStat",
+          "key": "experience",
+          "value": 25,
+          "operation": "Add"
+        }
+      ],
+      "choices": [
+        {
+          "id": "find-captain",
+          "text": "Head to Captain Martinez's quarters to find the codes",
+          "target_scene_id": "captain-quarters"
+        },
+        {
+          "id": "investigate-mining-bay",
+          "text": "Check the mining bay where this all started",
+          "target_scene_id": "mining-bay"
+        },
+        {
+          "id": "contact-aria",
+          "text": "Contact ARIA for more information",
+          "target_scene_id": "aria-consultation"
+        }
+      ]
+    },
+    {
+      "id": "ventilation-discovery",
+      "title": "Something in the Vents",
+      "description": "You trace the scratching sounds to a ventilation grate that's been clawed open from the inside. Peering into the darkness, you see strange, web-like substances coating the vent walls. Suddenly, a pale hand shoots out of the darkness, followed by what was once Engineer Rodriguez. His eyes are completely black, his skin has a sickly translucent quality, and he moves with unnatural, jerky motions.",
+      "choices": [
+        {
+          "id": "fight-rodriguez",
+          "text": "Defend yourself against the infected Rodriguez",
+          "target_scene_id": "first-combat",
+          "conditions": [
+            {
+              "condition_type": "Inventory",
+              "key": "plasma-pistol",
+              "operator": "GreaterEqual",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "try-communication",
+          "text": "Try to communicate with Rodriguez",
+          "target_scene_id": "infected-communication"
+        },
+        {
+          "id": "run-away",
+          "text": "Run away from this thing that used to be Rodriguez",
+          "target_scene_id": "frantic-escape"
+        }
+      ]
+    },
+    {
+      "id": "infection-details",
+      "title": "The Alien Parasite",
+      "description": "ARIA displays disturbing biological scans on the screen. 'The organism appears to be a parasitic entity of unknown origin. It attaches to the nervous system and begins rewriting the host's DNA. The process is irreversible once it reaches 50% integration. The infected retain some memories and intelligence, but their primary drive becomes spreading the infection. Most troubling is that the organism seems to have a collective intelligence.'",
+      "effects": [
+        {
+          "effect_type": "SetFlag",
+          "key": "parasite_knowledge",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "ask-detection",
+          "text": "Ask how to detect who's infected",
+          "target_scene_id": "detection-methods"
+        },
+        {
+          "id": "ask-weakness",
+          "text": "Find out if the parasites have any weaknesses",
+          "target_scene_id": "parasite-weakness"
+        },
+        {
+          "id": "ask-source",
+          "text": "Inquire about the origin of these creatures",
+          "target_scene_id": "asteroid-origin"
+        }
+      ]
+    },
+    {
+      "id": "final-confrontation",
+      "title": "The Hive Mind",
+      "description": "You've reached the central core of the station, where the infected crew has gathered. They've formed some kind of hive structure using organic matter that pulses with alien life. At the center stands what was once Captain Martinez, but she's been transformed into something that serves as the collective's voice. 'You cannot stop evolution,' she speaks in unison with the others. 'Join us willingly, or be consumed.'",
+      "choices": [
+        {
+          "id": "negotiate",
+          "text": "Try to negotiate with the hive mind",
+          "target_scene_id": "negotiation-attempt",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "charisma",
+              "operator": "GreaterEqual",
+              "value": 12
+            }
+          ]
+        },
+        {
+          "id": "use-codes",
+          "text": "Activate the station's self-destruct sequence",
+          "target_scene_id": "self-destruct-ending",
+          "conditions": [
+            {
+              "condition_type": "Flag",
+              "key": "self_destruct_codes",
+              "operator": "Equals",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "fight-hive",
+          "text": "Fight the hive mind with everything you have",
+          "target_scene_id": "final-battle"
+        },
+        {
+          "id": "join-them",
+          "text": "Accept their offer and join the collective",
+          "target_scene_id": "assimilation-ending"
+        }
+      ]
+    },
+    {
+      "id": "self-destruct-ending",
+      "title": "Ultimate Sacrifice",
+      "description": "You enter the abort codes, and the station's computer confirms the self-destruct sequence. The infected surge toward you, but it's too late. In a brilliant flash of nuclear fire, Kepler Station is destroyed, taking the infection with it. Your sacrifice ensures that this horror will never reach Earth. In the final moments, you see an escape pod launching - perhaps ARIA managed to save herself and the critical data about the threat.",
+      "is_ending": true,
+      "choices": []
+    },
+    {
+      "id": "assimilation-ending",
+      "title": "Joining the Collective",
+      "description": "You feel the parasite entering your system, and surprisingly, there's no pain - only a sense of belonging you've never experienced before. Your individual consciousness merges with the collective, and you understand their purpose. You are no longer alone, no longer limited by human frailties. Together, you will spread to the stars, bringing unity to all life. The infection was never the true horror - isolation was.",
+      "is_ending": true,
+      "choices": []
+    },
+    {
+      "id": "hero-ending",
+      "title": "Against All Odds",
+      "description": "Through skill, determination, and perhaps a bit of luck, you've managed to defeat the hive mind and contain the infection. ARIA helps you develop a cure using the research data, and you're able to save some of the crew members who weren't too far gone. The station is quarantined, but Earth is warned, and humanity is prepared for any future encounters with these parasites. You've become the hero who saved not just a space station, but possibly the entire human race.",
+      "is_ending": true,
+      "choices": []
+    },
+    {
+      "id": "escape-ending",
+      "title": "Narrow Escape",
+      "description": "Unable to defeat the infection but unwilling to sacrifice yourself, you manage to escape the station in the last functioning shuttle. As you fly away, you see Kepler Station consumed by the alien growths, becoming something that's no longer human-made. You carry with you critical information about the threat, but also the terrible knowledge that somewhere in space, a new form of life is growing, waiting for its chance to spread to other worlds.",
+      "is_ending": true,
+      "choices": []
+    }
+  ]
+}

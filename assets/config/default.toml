@@ -1,0 +1,58 @@
+# Text Adventure Game Configuration File
+# This file contains default settings for the game
+
+[game]
+# Enable automatic saving every few minutes
+auto_save = true
+# Auto-save interval in minutes
+auto_save_interval_minutes = 5
+# Maximum number of recent saves to keep
+max_recent_saves = 10
+# Ask for confirmation before making dangerous choices
+confirm_dangerous_choices = true
+# Show the potential effects of choices before selecting them
+show_choice_effects = false
+
+[ui]
+# Theme to use for the game interface
+theme = "default"
+# Show player statistics in the header
+show_stats_in_header = true
+# Show scene numbers for navigation
+show_scene_numbers = false
+# Animation speed for transitions
+animation_speed = "Medium"
+# Text width for word wrapping
+text_width = 80
+# Number of items to show per page in menus
+page_size = 10
+
+[paths]
+# Directory containing story files
+stories_dir = "./assets/stories"
+# Directory for save games
+saves_dir = "./assets/saves"
+# Directory for log files
+logs_dir = "./assets/logs"
+# Directory for configuration files
+config_dir = "./assets/config"
+
+[logging]
+# Logging level: error, warn, info, debug, trace
+level = "info"
+# Enable logging to file
+log_to_file = true
+# Maximum number of log files to keep
+max_log_files = 10
+# Maximum log file size in MB before rotation
+max_log_size_mb = 10
+
+[saves]
+# Maximum number of saves per story
+max_saves_per_story = 50
+# Automatically clean up old saves
+auto_cleanup_saves = true
+# Compress save files to save disk space
+compress_saves = false
+# Create backup copies of save files
+backup_saves = false

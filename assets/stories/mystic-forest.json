@@ -1,0 +1,511 @@
+{
+  "id": "mystic-forest",
+  "title": "The Mystic Forest Adventure",
+  "description": "A thrilling adventure through an enchanted forest filled with magical creatures, ancient secrets, and difficult choices that will determine your fate.",
+  "author": "Hamza Younas",
+  "version": "1.0.0",
+  "starting_scene_id": "forest-entrance",
+  "initial_player_stats": {
+    "health": 100,
+    "max_health": 100,
+    "experience": 0,
+    "level": 1,
+    "strength": 12,
+    "intelligence": 12,
+    "charisma": 12
+  },
+  "scenes": [
+    {
+      "id": "forest-entrance",
+      "title": "The Forest's Edge",
+      "description": "You stand at the edge of the Mystic Forest, its ancient trees towering above you like silent sentinels. A worn path disappears into the shadowy depths ahead, while mysterious glowing lights dance between the branches. The air hums with magical energy, and you can hear distant sounds echoing from within.",
+      "choices": [
+        {
+          "id": "follow-path",
+          "text": "Follow the worn path deeper into the forest",
+          "target_scene_id": "ancient-path"
+        },
+        {
+          "id": "investigate-lights",
+          "text": "Investigate the glowing lights",
+          "target_scene_id": "fairy-grove"
+        },
+        {
+          "id": "climb-tree",
+          "text": "Climb a tall tree to get a better view",
+          "target_scene_id": "treetop-view"
+        }
+      ]
+    },
+    {
+      "id": "ancient-path",
+      "title": "The Ancient Path",
+      "description": "The path winds through towering oaks and silver birches, their leaves whispering secrets in an ancient language. As you walk, you notice carved stone markers along the way, each bearing strange symbols that seem to pulse with inner light. Suddenly, you hear footsteps behind you.",
+      "choices": [
+        {
+          "id": "examine-markers",
+          "text": "Stop and examine the stone markers closely",
+          "target_scene_id": "magic-markers",
+          "effects": [
+            {
+              "effect_type": "ModifyStat",
+              "key": "intelligence",
+              "value": 2,
+              "operation": "Add"
+            }
+          ]
+        },
+        {
+          "id": "hide-behind-tree",
+          "text": "Quickly hide behind a large tree",
+          "target_scene_id": "mysterious-follower"
+        },
+        {
+          "id": "confront-follower",
+          "text": "Turn around and confront whoever is following you",
+          "target_scene_id": "brave-confrontation",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "charisma",
+              "operator": "GreaterEqual",
+              "value": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fairy-grove",
+      "title": "The Fairy Grove",
+      "description": "You follow the dancing lights to a small clearing where dozens of tiny fairies flutter about like living stars. Their melodic laughter fills the air as they weave intricate patterns of light. In the center of the grove stands a crystal fountain that reflects rainbows in all directions.",
+      "choices": [
+        {
+          "id": "approach-fountain",
+          "text": "Approach the crystal fountain",
+          "target_scene_id": "crystal-fountain"
+        },
+        {
+          "id": "try-communicate",
+          "text": "Try to communicate with the fairies",
+          "target_scene_id": "fairy-communication",
+          "effects": [
+            {
+              "effect_type": "ModifyStat",
+              "key": "charisma",
+              "value": 3,
+              "operation": "Add"
+            }
+          ]
+        },
+        {
+          "id": "observe-quietly",
+          "text": "Observe quietly from the edge of the grove",
+          "target_scene_id": "fairy-blessing"
+        }
+      ]
+    },
+    {
+      "id": "treetop-view",
+      "title": "Among the Branches",
+      "description": "From high in the canopy, you can see the entire forest spread out before you like a green ocean. You spot several interesting locations: a clearing with ancient ruins, a dark cave entrance, and a shimmering lake. As you survey the area, a magnificent phoenix lands on a nearby branch.",
+      "choices": [
+        {
+          "id": "talk-to-phoenix",
+          "text": "Carefully approach and try to communicate with the phoenix",
+          "target_scene_id": "phoenix-encounter",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "intelligence",
+              "operator": "GreaterEqual",
+              "value": 13
+            }
+          ]
+        },
+        {
+          "id": "climb-to-ruins",
+          "text": "Climb down and head to the ancient ruins",
+          "target_scene_id": "ancient-ruins"
+        },
+        {
+          "id": "explore-cave",
+          "text": "Make your way to the mysterious cave",
+          "target_scene_id": "dark-cave"
+        },
+        {
+          "id": "visit-lake",
+          "text": "Head towards the shimmering lake",
+          "target_scene_id": "mystic-lake"
+        }
+      ]
+    },
+    {
+      "id": "magic-markers",
+      "title": "Ancient Wisdom",
+      "description": "As you study the stone markers, their symbols begin to glow brighter, and suddenly you can understand their meaning! They tell the story of an ancient guardian who protected this forest from dark forces. The markers form a protective ward, and you realize you've learned powerful knowledge.",
+      "effects": [
+        {
+          "effect_type": "SetFlag",
+          "key": "learned_ancient_lore",
+          "value": true
+        },
+        {
+          "effect_type": "ModifyStat",
+          "key": "experience",
+          "value": 50,
+          "operation": "Add"
+        }
+      ],
+      "choices": [
+        {
+          "id": "continue-path",
+          "text": "Continue along the path with your new knowledge",
+          "target_scene_id": "guardian-shrine"
+        },
+        {
+          "id": "search-for-guardian",
+          "text": "Search for the ancient guardian mentioned in the markers",
+          "target_scene_id": "guardian-quest"
+        }
+      ]
+    },
+    {
+      "id": "crystal-fountain",
+      "title": "The Fountain of Memories",
+      "description": "As you approach the crystal fountain, the water begins to swirl with images of the past. You see glimpses of ancient battles, peaceful times, and the history of the forest itself. The fairies gather around you, their light growing brighter.",
+      "choices": [
+        {
+          "id": "drink-water",
+          "text": "Drink from the magical fountain",
+          "target_scene_id": "fountain-blessing",
+          "effects": [
+            {
+              "effect_type": "ModifyHealth",
+              "key": "health",
+              "value": 25,
+              "operation": "Add"
+            },
+            {
+              "effect_type": "AddItem",
+              "key": "fairy-blessing",
+              "value": {
+                "id": "fairy-blessing",
+                "name": "Fairy's Blessing",
+                "description": "A magical blessing that grants you the favor of forest creatures.",
+                "item_type": "KeyItem",
+                "quantity": 1,
+                "properties": {
+                  "magical": true,
+                  "permanent": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "make-wish",
+          "text": "Make a wish while touching the fountain",
+          "target_scene_id": "wish-granted"
+        }
+      ]
+    },
+    {
+      "id": "phoenix-encounter",
+      "title": "The Phoenix's Wisdom",
+      "description": "The magnificent phoenix regards you with ancient, knowing eyes. When you speak, it responds with a melodious voice that resonates in your mind rather than your ears. 'Young traveler,' it says, 'I have watched over this forest for centuries. You show promise, but great challenges lie ahead.'",
+      "effects": [
+        {
+          "effect_type": "ModifyStat",
+          "key": "intelligence",
+          "value": 5,
+          "operation": "Add"
+        }
+      ],
+      "choices": [
+        {
+          "id": "ask-about-challenges",
+          "text": "Ask about the challenges that await",
+          "target_scene_id": "phoenix-prophecy"
+        },
+        {
+          "id": "request-guidance",
+          "text": "Request guidance for your journey",
+          "target_scene_id": "phoenix-gift"
+        },
+        {
+          "id": "offer-service",
+          "text": "Offer to serve as the forest's protector",
+          "target_scene_id": "guardian-oath"
+        }
+      ]
+    },
+    {
+      "id": "ancient-ruins",
+      "title": "The Forgotten Temple",
+      "description": "The ruins reveal themselves to be an ancient temple, its stone walls covered in glowing runes. At the center stands an altar with a mysterious orb that pulses with dark energy. You sense both great power and great danger here.",
+      "choices": [
+        {
+          "id": "touch-orb",
+          "text": "Touch the mysterious orb",
+          "target_scene_id": "dark-power",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "strength",
+              "operator": "GreaterEqual",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "id": "read-runes",
+          "text": "Study the glowing runes on the walls",
+          "target_scene_id": "ancient-knowledge",
+          "conditions": [
+            {
+              "condition_type": "Flag",
+              "key": "learned_ancient_lore",
+              "operator": "Equals",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "leave-temple",
+          "text": "Leave this place immediately",
+          "target_scene_id": "wise-retreat"
+        }
+      ]
+    },
+    {
+      "id": "guardian-shrine",
+      "title": "The Guardian's Shrine",
+      "description": "Your knowledge of the ancient lore leads you to a hidden shrine dedicated to the forest guardian. The shrine is intact and radiates peaceful energy. An ethereal figure materializes before you - the spirit of the ancient guardian himself.",
+      "conditions": [
+        {
+          "condition_type": "Flag",
+          "key": "learned_ancient_lore",
+          "operator": "Equals",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "accept-blessing",
+          "text": "Accept the guardian's blessing",
+          "target_scene_id": "guardian-blessing",
+          "effects": [
+            {
+              "effect_type": "ModifyStat",
+              "key": "max_health",
+              "value": 25,
+              "operation": "Add"
+            },
+            {
+              "effect_type": "ModifyStat",
+              "key": "health",
+              "value": 25,
+              "operation": "Add"
+            }
+          ]
+        },
+        {
+          "id": "ask-purpose",
+          "text": "Ask about your purpose in the forest",
+          "target_scene_id": "destiny-revealed"
+        }
+      ]
+    },
+    {
+      "id": "phoenix-gift",
+      "title": "The Phoenix's Gift",
+      "description": "The phoenix spreads its magnificent wings, and a single golden feather falls at your feet. 'This feather will protect you in your darkest hour,' the phoenix says. 'Use it wisely, for such gifts are given only once in a lifetime.'",
+      "effects": [
+        {
+          "effect_type": "AddItem",
+          "key": "phoenix-feather",
+          "value": {
+            "id": "phoenix-feather",
+            "name": "Phoenix Feather",
+            "description": "A magical feather that can save you from death once.",
+            "item_type": "KeyItem",
+            "quantity": 1,
+            "properties": {
+              "magical": true,
+              "life_saving": true
+            }
+          }
+        }
+      ],
+      "choices": [
+        {
+          "id": "thank-phoenix",
+          "text": "Thank the phoenix and continue your journey",
+          "target_scene_id": "blessed-path"
+        }
+      ]
+    },
+    {
+      "id": "final-choice",
+      "title": "The Heart of the Forest",
+      "description": "You've reached the very heart of the Mystic Forest, where all paths converge. Here stands the World Tree, its massive trunk glowing with inner light. You realize that your choices have led you here for a reason - you must decide the fate of the forest itself.",
+      "choices": [
+        {
+          "id": "protect-forest",
+          "text": "Pledge to protect the forest and become its new guardian",
+          "target_scene_id": "guardian-ending",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "charisma",
+              "operator": "GreaterEqual",
+              "value": 15
+            }
+          ]
+        },
+        {
+          "id": "take-power",
+          "text": "Claim the forest's power for yourself",
+          "target_scene_id": "power-ending",
+          "conditions": [
+            {
+              "condition_type": "Stat",
+              "key": "strength",
+              "operator": "GreaterEqual",
+              "value": 18
+            }
+          ]
+        },
+        {
+          "id": "leave-unchanged",
+          "text": "Leave the forest as you found it",
+          "target_scene_id": "neutral-ending"
+        }
+      ]
+    },
+    {
+      "id": "guardian-ending",
+      "title": "The New Guardian",
+      "description": "As you pledge your life to protecting the forest, the World Tree's light envelops you. You feel yourself changing, becoming one with the forest itself. You have become the new Guardian of the Mystic Forest, and though you can never leave, you will spend eternity protecting this magical realm and all who dwell within it. The forest creatures celebrate your noble choice, and you know you have found your true calling.",
+      "is_ending": true,
+      "choices": []
+    },
+    {
+      "id": "power-ending",
+      "title": "Master of the Forest",
+      "description": "You reach out and grasp the World Tree's power, feeling incredible magical energy flow through you. The forest bends to your will, and you become its absolute master. With this power, you could rule not just the forest, but potentially the entire world. However, you sense that this path may lead to corruption and loneliness. Only time will tell if your choice was wise.",
+      "is_ending": true,
+      "choices": []
+    },
+    {
+      "id": "neutral-ending",
+      "title": "The Wise Wanderer",
+      "description": "You choose to leave the forest's power untouched, respecting the natural balance that has existed for millennia. As you turn to leave, the forest itself seems to nod in approval. You emerge from the Mystic Forest forever changed by your experiences, carrying with you the wisdom and memories of your adventure. Though you gained no magical power, you've gained something far more valuable - true understanding.",
+      "is_ending": true,
+      "choices": []
+    },
+    {
+      "id": "mysterious-follower",
+      "title": "Hidden in Shadows",
+      "description": "You slip behind a massive oak tree, your heart pounding as the footsteps grow closer. A hooded figure emerges from the shadows, moving with purpose along the path. They pause near your hiding spot, and you catch a glimpse of glowing eyes beneath the hood.",
+      "choices": [
+        {
+          "id": "stay-hidden",
+          "text": "Remain perfectly still and wait",
+          "target_scene_id": "shadow-passes"
+        },
+        {
+          "id": "reveal-yourself",
+          "text": "Step out and introduce yourself",
+          "target_scene_id": "hooded-stranger"
+        }
+      ]
+    },
+    {
+      "id": "brave-confrontation",
+      "title": "Face to Face",
+      "description": "You turn boldly to face your follower, your confident stance surprising them. A tall figure in a forest-green cloak stops short, raising their hands peacefully. 'Well met, brave one,' they say with a warm smile. 'I am Eldara, a forest ranger. I was curious about a newcomer walking the old paths.'",
+      "choices": [
+        {
+          "id": "ask-about-forest",
+          "text": "Ask Eldara about the forest and its secrets",
+          "target_scene_id": "ranger-wisdom"
+        },
+        {
+          "id": "request-guidance",
+          "text": "Request her guidance through the forest",
+          "target_scene_id": "ranger-companion"
+        }
+      ]
+    },
+    {
+      "id": "fairy-communication",
+      "title": "Fairy Friends",
+      "description": "You speak softly to the fairies, and to your amazement, they respond! Their tiny voices tinkle like silver bells as they share stories of the forest's magic. They tell you of secret pathways and hidden treasures, and one brave fairy lands on your shoulder as a sign of friendship.",
+      "effects": [
+        {
+          "effect_type": "SetFlag",
+          "key": "fairy_friendship",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "ask-about-treasures",
+          "text": "Ask about the hidden treasures they mentioned",
+          "target_scene_id": "treasure-location"
+        },
+        {
+          "id": "ask-about-pathways",
+          "text": "Inquire about the secret pathways",
+          "target_scene_id": "secret-paths"
+        }
+      ]
+    },
+    {
+      "id": "dark-cave",
+      "title": "The Cave of Echoes",
+      "description": "The cave entrance yawns before you like a great mouth, with stalactites hanging down like teeth. Strange echoes emanate from within, and you notice ancient paintings on the cave walls depicting scenes of great battles and mysterious rituals.",
+      "choices": [
+        {
+          "id": "enter-cave",
+          "text": "Enter the cave cautiously",
+          "target_scene_id": "cave-depths"
+        },
+        {
+          "id": "study-paintings",
+          "text": "Examine the ancient paintings first",
+          "target_scene_id": "cave-art"
+        },
+        {
+          "id": "call-into-cave",
+          "text": "Call out to see if anyone responds",
+          "target_scene_id": "cave-response"
+        }
+      ]
+    },
+    {
+      "id": "mystic-lake",
+      "title": "The Mirror Lake",
+      "description": "The lake's surface is so still it perfectly mirrors the sky above, creating an otherworldly effect. As you approach, you notice the water seems to glow with an inner light, and strange shapes move beneath the surface. A small dock extends into the water with an ornate boat tied to it.",
+      "choices": [
+        {
+          "id": "take-boat",
+          "text": "Untie the boat and row to the center of the lake",
+          "target_scene_id": "lake-center"
+        },
+        {
+          "id": "drink-water",
+          "text": "Cup your hands and drink from the magical lake",
+          "target_scene_id": "lake-vision"
+        },
+        {
+          "id": "touch-surface",
+          "text": "Gently touch the water's surface",
+          "target_scene_id": "lake-creatures"
+        }
+      ]
+    }
+  ]
+}
